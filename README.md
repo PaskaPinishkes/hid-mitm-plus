@@ -1,10 +1,10 @@
 # hid-mitm-plus
 
-Sysmodule mitming the Horizon hid (human interface device) services.
+Sysmodule forked from hid-mitm by jakibaki to allow gamepads to be used from the network on the nintendo switch for services such as Parsec to be usable.
 
 # Disclaimer:
 This sysmodule is in **beta** and is a **work in progress**! Problems are to be expected. If you encounter any that aren't listed in the known issues section please report it [here](https://github.com/PaskaPinishkes/hid-mitm-plus/issues) if nobody else did already.
-The added code in both the sysmodule and python proxy is a mess, so any tips on how to fix it is welcomed!
+The code added in both the sysmodule and python proxy is a mess since this is my first time programming in Python and also my first time working on sysmodules, so any tips on how to fix it is welcomed!
 
 # Features
 * Use custom gamepads on your nintendo switch by using your pc as a proxy (Take in mind that this sysmodule isn't retrocompatible with the original hid-mitm proxies).
@@ -25,6 +25,7 @@ This sysmodule wasn't tested on ReiNX and SX OS, so expect it to have issues on 
 # Usage
 ## Custom gamepads
 The way that custom gamepads work with hid-mitm is not by directly connecting the gamepad to your switch but by connecting your gamepad to your pc and then running the `input_pc.py` app which then in turn sends the input to your switch which will recognize it as an additional pro-controller. Right now, it is possible to emulate up to 4 controllers and in the future, 8. Please take in mind that everything in this sysmodule and script is experimental and was only tested with an Xbox controller.
+The android and iOS apps made for the original hid-mitm weren't tested, but are most likely unsupported due to the changes made to support more controllers.
 
 Hid-mitm-plus can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
 Check out the `input_pc.py` for some reference of how to talk to hid-mitm.
@@ -45,6 +46,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 
 # Planned features
 
+* Clean code to avoid unnecessary input delay
 * Version to emulate a Joy Con instead of the Pro Controller
 * Support for motion controls
 * (maybe) vibration support
@@ -60,3 +62,12 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 The best way to get your questions answered is by asking in the [AtlasNX discord](https://discord.gg/qbRAuy7).
 
 Please don't pollute the issue-tracker with general usage questions.
+
+# Building
+
+To build this sysmodule, all you need to do is install libnx 3.0 and use the make command.
+
+# Credits
+jakibaki - original sysmodule (hid-mitm)
+PaskaPinishkes - code edits to support up to 4 players
+ReSwitched Discord Server - help in the support channels
