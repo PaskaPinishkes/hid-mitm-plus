@@ -205,46 +205,97 @@ struct hid_unk_section
     u64 unk;
 };
 
-int apply_fake_gamepad(struct input_msg msg)
+int FakeController::initialize()
 {
+    if (isInitialized == true) return 0;
+    Result myResult;
+    //printToFile("Controller initializing...");
+        
+    
+    // Set the controller type to Pro-Controller, and set the npadInterfaceType.
+    controllerDevice.deviceType = HidDeviceType_FullKey3; // FullKey3 for Pro Controller, JoyLeft4 for left joy con
+    controllerDevice.npadInterfaceType = NpadInterfaceType_Bluetooth;
+    // Set the controller colors. The grip colors are for Pro-Controller on [9.0.0+].
+    controllerDevice.singleColorBody = RGBA8_MAXALPHA(255,153,204);
+    controllerDevice.singleColorButtons = RGBA8_MAXALPHA(0,0,0);
+    controllerDevice.colorLeftGrip = RGBA8_MAXALPHA(255,0,127);
+    controllerDevice.colorRightGrip = RGBA8_MAXALPHA(255,0,127);
+
+    // Setup example controller state.
+    controllerState.batteryCharge = 4; // Set battery charge to full.
+    controllerState.joysticks[JOYSTICK_LEFT].dx = 0x0;
+    controllerState.joysticks[JOYSTICK_LEFT].dy = -0x0;
+    controllerState.joysticks[JOYSTICK_RIGHT].dx = 0x0;
+    controllerState.joysticks[JOYSTICK_RIGHT].dy = -0x0;
+    
+    myResult = hiddbgAttachHdlsVirtualDevice(&controllerHandle, &controllerDevice);
+    if (R_FAILED(myResult)) {
+        //printToFile("Failed connecting controller... fuck");
+        return -1;
+    }
+
+    //printToFile("Controller initialized!");
+    isInitialized = true;
+    return 0;
+}
+
+
+FakeController controllerList[8];
+u8 controllersConnected = 0;
+int apply_fake_gamepad(struct input_msg msg) // This function is called every frame if networking is enabled
+{
+    // Experienced programmers! Enjoy this noob paradise with absolutely not optimized and terrible code I made! really, please tell me tips because I absolutely need them :p
     if(msg.magic != INPUT_MSG_MAGIC)
         return -1;
 
-    int gamepad;
-    for (gamepad = CONTROLLER_PLAYER_1; gamepad <= CONTROLLER_PLAYER_8; gamepad++)
+    for (u8 num = controllersConnected; num < msg.controllerCount; num++)
     {
-        if (tmp_shmem_mem.controllers[gamepad].misc.deviceType == 0)
-            break;
+        controllerList[num].initialize();
+        controllersConnected++;
     }
 
-    memset(&tmp_shmem_mem.controllers[gamepad].misc, 0, 0x40); // can probably be sizeof(misc)
-    memset(&tmp_shmem_mem.controllers[gamepad].header, 0, sizeof(HidControllerHeader));
+    // Controller 1 inputs, it'll always be on
+    controllerList[0].controllerState.buttons = msg.keys;
+    controllerList[0].controllerState.joysticks[0].dx = msg.joy_l_x;
+    controllerList[0].controllerState.joysticks[0].dy = msg.joy_l_y;
+    controllerList[0].controllerState.joysticks[1].dx = msg.joy_r_x;
+    controllerList[0].controllerState.joysticks[1].dy = msg.joy_r_y;
+    hiddbgSetHdlsState(controllerList[0].controllerHandle, &controllerList[0].controllerState);
 
-    // Pro controller magic
-    tmp_shmem_mem.controllers[gamepad].misc.deviceType = 0x01;
-
-    tmp_shmem_mem.controllers[gamepad].header.singleColorBody = 0;
-    tmp_shmem_mem.controllers[gamepad].header.singleColorButtons = 0xFFFFFFFF;
-
-    //Joycon: 0x20000004
-    //Pro controller: 0x20000001
-    tmp_shmem_mem.controllers[gamepad].header.type = 0x20000001;
-
-    for (int layout = 0; layout < LAYOUT_DEFAULT + 1; layout++)
+    // Controller 2 inputs
+    if (msg.controllerCount >= 2)
     {
-        HidControllerLayout *currentTmpLayout = &tmp_shmem_mem.controllers[gamepad].layouts[layout];
-
-        int ent = currentTmpLayout->header.latestEntry;
-
-        HidControllerInputEntry *curTmpEnt = &currentTmpLayout->entries[ent];
-        curTmpEnt->connectionState = 1;
-        curTmpEnt->buttons = msg.keys;
-        curTmpEnt->joysticks[0].dx = msg.joy_l_x;
-        curTmpEnt->joysticks[0].dy = msg.joy_l_y;
-        curTmpEnt->joysticks[1].dx = msg.joy_r_x;
-        curTmpEnt->joysticks[1].dy = msg.joy_r_y;
+        controllerList[1].controllerState.buttons = msg.twoKeys;
+        controllerList[1].controllerState.joysticks[0].dx = msg.twoJoy_l_x;
+        controllerList[1].controllerState.joysticks[0].dy = msg.twoJoy_l_y;
+        controllerList[1].controllerState.joysticks[1].dx = msg.twoJoy_r_x;
+        controllerList[1].controllerState.joysticks[1].dy = msg.twoJoy_r_y;
+        hiddbgSetHdlsState(controllerList[1].controllerHandle, &controllerList[1].controllerState);
     }
-    return gamepad;
+
+    // Controller 3 inputs
+    if (msg.controllerCount >= 3)
+    {
+        controllerList[2].controllerState.buttons = msg.threeKeys;
+        controllerList[2].controllerState.joysticks[0].dx = msg.threeJoy_l_x;
+        controllerList[2].controllerState.joysticks[0].dy = msg.threeJoy_l_y;
+        controllerList[2].controllerState.joysticks[1].dx = msg.threeJoy_r_x;
+        controllerList[2].controllerState.joysticks[1].dy = msg.threeJoy_r_y;
+        hiddbgSetHdlsState(controllerList[2].controllerHandle, &controllerList[2].controllerState);
+    }
+
+    // Controller 4 inputs
+    if (msg.controllerCount >= 4)
+    {
+        controllerList[3].controllerState.buttons = msg.fourKeys;
+        controllerList[3].controllerState.joysticks[0].dx = msg.fourJoy_l_x;
+        controllerList[3].controllerState.joysticks[0].dy = msg.fourJoy_l_y;
+        controllerList[3].controllerState.joysticks[1].dx = msg.fourJoy_r_x;
+        controllerList[3].controllerState.joysticks[1].dy = msg.fourJoy_r_y;
+        hiddbgSetHdlsState(controllerList[3].controllerHandle, &controllerList[3].controllerState);
+    }
+
+    return 0;
 }
 
 void shmem_copy(HidSharedMemory *source, HidSharedMemory *dest)

@@ -67,8 +67,8 @@ static const SocketInitConfig sockInitConf = {
     .tcp_rx_buf_max_size    = 0x800,
     // We're not using tcp anyways
 
-    .udp_tx_buf_size = 0x2400,
-    .udp_rx_buf_size = 0xA500,
+    .udp_tx_buf_size = 0x2600,
+    .udp_rx_buf_size = 0xA700,
 
     .sb_efficiency = 2,
 
@@ -94,11 +94,27 @@ void __appInit(void) {
         fatalThrow(rc);
     __libnx_init_time();
 
+    rc = setsysInitialize();
+        if (R_SUCCEEDED(rc)) {
+            SetSysFirmwareVersion fw;
+            rc = setsysGetFirmwareVersion(&fw);
+            if (R_SUCCEEDED(rc))
+                hosversionSet(MAKEHOSVERSION(fw.major, fw.minor, fw.micro));
+            setsysExit();
+        }
+    
     //rc = hidInitialize();
     //if (R_FAILED(rc))
     //    fatalThrow(rc);
     
-    
+    rc = hiddbgInitialize();
+    if (R_FAILED(rc)) {
+        fatalThrow(rc);
+    }
+    rc = hiddbgAttachHdlsWorkBuffer();
+    if (R_FAILED(rc)) {
+        fatalThrow(rc);
+    }
     rc = socketInitialize(&sockInitConf);
     if (R_FAILED(rc))
         fatalThrow(rc);

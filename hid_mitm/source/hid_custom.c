@@ -4,9 +4,10 @@
 #include <stdio.h>
 
 Mutex shmem_mutex;
+u64 AppletResourceUserId;
 
 static Result _customHidCreateAppletResource(Service *srv, Service *out_iappletresource) {
-    u64 AppletResourceUserId = appletGetAppletResourceUserId();
+    appletGetAppletResourceUserId(&AppletResourceUserId);
 
     return serviceDispatchIn(srv, 0, AppletResourceUserId,
                              .in_send_pid = true,

@@ -33,3 +33,13 @@ public:
     SharedMemory real_sharedmem;
     SharedMemory fake_sharedmem;
 };
+
+class FakeController {
+public:
+    u64 controllerHandle = 0;
+    HiddbgHdlsDeviceInfo controllerDevice = {0};
+    HiddbgHdlsState controllerState = {0};
+    int initialize();
+private:
+    bool isInitialized;
+};
