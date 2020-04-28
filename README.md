@@ -69,6 +69,6 @@ Please don't pollute the issue-tracker with general usage questions.
 To build this sysmodule, all you need to do is install libnx 3.0 and use the make command.
 
 # Credits
-jakibaki - original sysmodule (hid-mitm)
-PaskaPinishkes - code edits to support up to 4 players
-ReSwitched Discord Server - help in the support channels
+* jakibaki - original sysmodule (hid-mitm)
+* PaskaPinishkes - code edits to support up to 4 players
+* ReSwitched Discord Server - help in the support channels
