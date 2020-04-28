@@ -1,15 +1,17 @@
-# hid-mitm
+# hid-mitm-plus
 
 Sysmodule mitming the Horizon hid (human interface device) services.
 
 # Disclaimer:
-This sysmodule is in **beta**! Problems are to be expected. If you encounter any that aren't listed in the known issues section please report it [here](https://github.com/jakibaki/hid-mitm/issues) if nobody else did already.
-
+This sysmodule is in **beta** and is a **work in progress**! Problems are to be expected. If you encounter any that aren't listed in the known issues section please report it [here](https://github.com/PaskaPinishkes/hid-mitm-plus/issues) if nobody else did already.
+The added code in both the sysmodule and python proxy is a mess, so any tips on how to fix it is welcomed!
 
 # Features
-* Rebind buttons on your gamepads.
+* Use custom gamepads on your nintendo switch by using your pc as a proxy (Take in mind that this sysmodule isn't retrocompatible with the original hid-mitm proxies).
 
-* Use custom gamepads on your nintendo switch by using your phone/pc as a proxy.
+* Rebind buttons on your gamepads. [UNTESTED AFTER CHANGES]
+
+
 
 # Setup
 While hid-mitm will work perfectly fine on stock atmosphere and possibly reinx the recommended setup is to download the latest [Kosmos](https://github.com/AtlasNX/Kosmos) since it comes preconfigured with the awesome Kosmos Toolbox which allows you to easily configure hid-mitm.
@@ -23,7 +25,10 @@ No help for ReiNX is provided, if it runs that's fine but if you run into proble
 No support whatsoever for sxos.
 
 # Usage
-## Rebinding buttons
+## Custom gamepads
+The way that custom gamepads work with hid-mitm is not by directly connecting the gamepad to your switch but by connecting your gamepad to your pc and then running the `input_pc.py` app which then in turn sends the input to your switch which will recognize it as an additional pro-controller. Right now, it is possible to emulate up to 4 controllers and in the future, 8. Please take in mind that everything in this sysmodule and script is experimental and was only tested with an Xbox controller.
+
+## Rebinding buttons [UNTESTED]
 Simply open the Kosmos toolbox, go to the sysmodule menu and continue to the hid-mitm menu from there (it's a simple button-press explained in the bottom bar)
 
 After that a screen will pop up in which you can select the button you want to rebind and then what you want it to rebind for.  
@@ -31,28 +36,11 @@ After you're done, be sure to touch the button in the middle to save your change
 
 You can also configure it manually by editing the `/config/hid_mitm/config.ini` file.
 
-## Custom gamepads
-The way that custom gamepads work with hid-mitm is not by directly connecting the gamepad to your switch but by connecting your gamepad to your phone (and experimentally pc) and then running the hid-mitm app which then in turn sends the input to your switch which will recognize it as an additional pro-controller.
 
-Download the `companion_apps.zip` from the [release page](https://github.com/jakibaki/hid-mitm/releases).
 
-### Android
-* Install the `hid-mitm.apk` from the zip on your phone.
-* Make sure that your switch has hid-mitm enabled and is connected to the same network as your phone. You can use 90dns if you don't want your switch to connect to nintendos servers.
-* Connect your gamepad to your phone
-* Enter the ip-address of your nintendo switch in the hid-mitm app (it can be found in the network settings) and press "connect"
-* Your switch now should now pick up your gamepad as an additional pro-controller! :)
 
-### iOS
-* Install the `hid-mitm.ipa` from the zip on your phone. You can use Cydia Impactor for that, don't worry it will work just fine even without a jailbreak.
-* Make sure that your switch has hid-mitm enabled and is connected to the same network as your phone. You can use 90dns if you don't want your switch to connect to nintendos servers.
-* Connect your gamepad to your phone (please note that apple is rather restrictive with the choice of gamepads that they allow you to use)
-* Enter the ip-address of your nintendo switch in the hid-mitm app (it can be found in the network settings) and press "connect"
-* Your switch now should now pick up your gamepad as an additional pro-controller! :)
 
-As a workaround to iOS not recognizing a plus and minus button `l1+l2+r1+r2+x` will result in a `plus` and `l1+l2+r1+r2+dpad-left` in a `minus`.
-
-Hid-mitm can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
+Hid-mitm-plus can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
 Check out the `input_pc.py` for some reference of how to talk to hid-mitm.
 
 # Known issues
@@ -68,10 +56,15 @@ If anyone who has experience with android development wants to get that fixed by
 
 # Planned features
 
-* Support for connecting multiple custom gamepads
+* Version to emulate a Joy Con instead of the Pro Controller
 * Support for motion controls
 * (maybe) vibration support
-* Support for "disguising" gamepads as something else. To allow for example to play pokemon with a pro-controller.
+
+# Games with issues
+* BOXBOY! + BOXGIRL! (Input is not detected for some reason)
+* 1-2 Switch (Needs gyroscope and Joy Con support)
+* Pokemon Let's Go Pikachu/Eevee (Needs gyroscope and Joy Con support)
+* Super Mario Party (Needs gyroscope and Joy Con support)
 
 # Support
 
