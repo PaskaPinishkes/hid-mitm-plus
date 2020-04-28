@@ -46,8 +46,9 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 
 # Planned features
 
-* Clean code to avoid unnecessary input delay
+* Clean code to avoid unnecessary input delay (for example, join the 4 identical functions in the python script into 1)
 * Version to emulate a Joy Con instead of the Pro Controller
+* Home Button and Capture Button support
 * Support for motion controls
 * (maybe) vibration support
 
