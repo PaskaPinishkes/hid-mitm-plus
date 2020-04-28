@@ -20,13 +20,14 @@ On Kosmos it's just a matter of opening the Kosmos Toolbox, enabling the hid-mit
 
 On Atmosphere, installing hid-mitm can be done by dragging the content of the [release](https://github.com/jakibaki/hid-mitm/releases).
 
-No help for ReiNX is provided, if it runs that's fine but if you run into problems please try on a supported cfw before reporting.
-
-No support whatsoever for sxos.
+This sysmodule wasn't tested on ReiNX and SX OS, so expect it to have issues on those CFW.
 
 # Usage
 ## Custom gamepads
 The way that custom gamepads work with hid-mitm is not by directly connecting the gamepad to your switch but by connecting your gamepad to your pc and then running the `input_pc.py` app which then in turn sends the input to your switch which will recognize it as an additional pro-controller. Right now, it is possible to emulate up to 4 controllers and in the future, 8. Please take in mind that everything in this sysmodule and script is experimental and was only tested with an Xbox controller.
+
+Hid-mitm-plus can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
+Check out the `input_pc.py` for some reference of how to talk to hid-mitm.
 
 ## Rebinding buttons [UNTESTED]
 Simply open the Kosmos toolbox, go to the sysmodule menu and continue to the hid-mitm menu from there (it's a simple button-press explained in the bottom bar)
@@ -38,21 +39,9 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 
 
 
-
-
-Hid-mitm-plus can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
-Check out the `input_pc.py` for some reference of how to talk to hid-mitm.
-
 # Known issues
-
-* In some games the "connect gamepad" dialog will pop up every few minutes when playing in multiplayer with a custom gamepad connected
-* There are various problems that happen if hid-mitm and sys-ftpd are enabled at the same time.
-* Some phones have a terrible bluetooth connection which will result in input-delay if using bluetooth gamepads. I can't do anything about that, that's an issue with android.
-* On some wifi-networks iPhones have problems which will result in terrible input delay. You can work around this by just opening a hotspot on your phone and letting the switch connect to that. If you don't want your switch to use up mobile data be sure to enable 90dns.
-* Some gamepads won't have their inputs mapped correctly on android.  
-If anyone who has experience with android development wants to get that fixed by adding some kind of "setup interface" it would be greatly appreciated.
-* Tetris 99 doesn't want to recognize custom gamepads for some reason
-* The switch doesn't seem to accept using the custom gamepad as "activity" so the screen will automatically fade out after a while. You can work around that by turning off the auto-screen-off feature in the system settings.
+* Some games don't work properly (check Games with issues)
+* If a controller is disconnected, it's not possible to reconnect it unless you restart the sysmodule/switch
 
 # Planned features
 
