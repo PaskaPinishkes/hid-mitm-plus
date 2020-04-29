@@ -50,6 +50,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 * Version to emulate a Joy Con instead of the Pro Controller
 * Home Button and Capture Button support
 * Support for motion controls
+* (maybe) USB support
 * (maybe) vibration support
 
 # Games with issues
