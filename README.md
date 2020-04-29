@@ -43,7 +43,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 # Known issues
 * Some games don't work properly (check Games with issues)
 * If a controller is disconnected, it's not possible to reconnect it unless you restart the sysmodule/switch
-* The sysmodule freezes at boot at some consoles (possibly because of 10.0?)
+* The sysmodule freezes at boot at some consoles (possibly because of kosmos?)
 
 # Planned features
 
