@@ -60,12 +60,6 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 * Pokemon Let's Go Pikachu/Eevee (Needs gyroscope and Joy Con support)
 * Super Mario Party (Needs gyroscope and Joy Con support)
 
-# Support
-
-The best way to get your questions answered is by asking in the [AtlasNX discord](https://discord.gg/qbRAuy7).
-
-Please don't pollute the issue-tracker with general usage questions.
-
 # Building
 
 To build this sysmodule, all you need to do is install libnx 3.0 and use the make command.
