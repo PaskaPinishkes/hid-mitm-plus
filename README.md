@@ -59,6 +59,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 * 1-2 Switch (Needs gyroscope and Joy Con support)
 * Pokemon Let's Go Pikachu/Eevee (Needs gyroscope and Joy Con support)
 * Super Mario Party (Needs gyroscope and Joy Con support)
+* Mario & Sonic at the Olympic Games Tokyo 2020 (Some sports require the gyroscope, but most of the game is still playable)
 
 # Support
 
