@@ -30,7 +30,7 @@ The android and iOS apps made for the original hid-mitm weren't tested, but are 
 Hid-mitm-plus can also easily be repurposed to do scripted inputs (for example a "twitch plays").  
 Check out the `input_pc.py` for some reference of how to talk to hid-mitm.
 
-## Rebinding buttons [UNTESTED]
+## Rebinding buttons [UNTESTED AND GETTING REMOVED IN NEXT RELEASE DUE TO HORIZON 10.0 FEATURING THIS]
 Simply open the Kosmos toolbox, go to the sysmodule menu and continue to the hid-mitm menu from there (it's a simple button-press explained in the bottom bar)
 
 After that a screen will pop up in which you can select the button you want to rebind and then what you want it to rebind for.  
