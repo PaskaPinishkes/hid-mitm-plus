@@ -62,7 +62,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 
 # Support
 
-The best way to get your questions answered is by asking in the [AtlasNX discord](https://discord.gg/qbRAuy7).
+The best way to get your questions answered is by asking me in Discord (ignacio#5841).
 
 Please don't pollute the issue-tracker with general usage questions.
 
