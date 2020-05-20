@@ -56,6 +56,7 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 
 # Games with issues
 * BOXBOY! + BOXGIRL! (Input is not detected for some reason)
+* Cuphead (Input is not detected for some reason)
 * 1-2 Switch (Needs gyroscope and Joy Con support)
 * Pokemon Let's Go Pikachu/Eevee (Needs gyroscope and Joy Con support)
 * Super Mario Party (Needs gyroscope and Joy Con support)
