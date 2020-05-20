@@ -1,3 +1,4 @@
+**Development has been put in hold for 1-2 months**
 # hid-mitm-plus
 
 Sysmodule forked from hid-mitm by jakibaki to allow gamepads to be used from the network on the nintendo switch for services such as Parsec to be usable.
