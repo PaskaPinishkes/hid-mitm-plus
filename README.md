@@ -58,10 +58,14 @@ You can also configure it manually by editing the `/config/hid_mitm/config.ini` 
 # Games with issues
 * BOXBOY! + BOXGIRL! (Input is not detected for some reason)
 * Cuphead (Input is not detected for some reason)
-* 1-2 Switch (Needs gyroscope and Joy Con support)
+* 1-2-Switch (Needs gyroscope and Joy Con support)
 * Pokemon Let's Go Pikachu/Eevee (Needs gyroscope and Joy Con support)
 * Super Mario Party (Needs gyroscope and Joy Con support)
 * Mario & Sonic at the Olympic Games Tokyo 2020 (Some sports require the gyroscope, but most of the game is still playable)
+The following games cause a crash on boot:
+* Super Smash Bros. Ultimate
+* Pokémon Sword/Shield
+* Clubhouse Games: 51 Worldwide Classics 
 
 # Support
 
