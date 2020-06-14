@@ -1,4 +1,4 @@
-**Development has been put in hold for 1-2 months**
+**Development has been abandoned in favor of a rewrite that works on Horizon 10.0. If you still want to use this sysmodule, please keep in mind that hid-mitm-plus only works on <10.0**
 # hid-mitm-plus
 
 Sysmodule forked from hid-mitm by jakibaki to allow gamepads to be used from the network on the nintendo switch for services such as Parsec to be usable.
